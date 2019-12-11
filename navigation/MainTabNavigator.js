@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import TabBarIcon from "../components/TabBarIcon";
 import Superman from "../screens/Superman";
 import Progress from "../screens/Progress";
-import SettingsScreen from "../screens/SettingsScreen";
+import ChromeTabs from "../screens/ChromeTabsContainer";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -45,14 +45,9 @@ ProgressStack.navigationOptions = {
 
 ProgressStack.path = "";
 
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen
-  },
-  config
-);
+const ChromeTabsStack = createStackNavigator({ ChromeTabs }, config);
 
-SettingsStack.navigationOptions = {
+ChromeTabsStack.navigationOptions = {
   tabBarLabel: "Surprise",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -62,12 +57,12 @@ SettingsStack.navigationOptions = {
   )
 };
 
-SettingsStack.path = "";
+ChromeTabsStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
   SupermanStack,
   ProgressStack,
-  SettingsStack
+  ChromeTabsStack
 });
 
 tabNavigator.path = "";
