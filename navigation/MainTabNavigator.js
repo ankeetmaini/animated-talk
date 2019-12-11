@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import TabBarIcon from "../components/TabBarIcon";
 import Superman from "../screens/Superman";
-import LinksScreen from "../screens/LinksScreen";
+import Progress from "../screens/Progress";
 import SettingsScreen from "../screens/SettingsScreen";
 
 const config = Platform.select({
@@ -13,12 +13,7 @@ const config = Platform.select({
   default: {}
 });
 
-const SupermanStack = createStackNavigator(
-  {
-    Superman
-  },
-  config
-);
+const SupermanStack = createStackNavigator({ Superman }, config);
 
 SupermanStack.navigationOptions = {
   tabBarLabel: "Superman",
@@ -36,14 +31,9 @@ SupermanStack.navigationOptions = {
 
 SupermanStack.path = "";
 
-const LinksStack = createStackNavigator(
-  {
-    Links: LinksScreen
-  },
-  config
-);
+const ProgressStack = createStackNavigator({ Progress }, config);
 
-LinksStack.navigationOptions = {
+ProgressStack.navigationOptions = {
   tabBarLabel: "Progress",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -53,7 +43,7 @@ LinksStack.navigationOptions = {
   )
 };
 
-LinksStack.path = "";
+ProgressStack.path = "";
 
 const SettingsStack = createStackNavigator(
   {
@@ -76,7 +66,7 @@ SettingsStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
   SupermanStack,
-  LinksStack,
+  ProgressStack,
   SettingsStack
 });
 

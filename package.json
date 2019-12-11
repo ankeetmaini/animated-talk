@@ -32,8 +32,11 @@
     "react-navigation-tabs": "~2.6.2"
   },
   "devDependencies": {
+    "@types/react": "^16.9.16",
+    "@types/react-native": "^0.60.25",
     "babel-preset-expo": "~8.0.0",
-    "jest-expo": "~36.0.0"
+    "jest-expo": "~36.0.0",
+    "typescript": "^3.7.3"
   },
   "private": true
 }
