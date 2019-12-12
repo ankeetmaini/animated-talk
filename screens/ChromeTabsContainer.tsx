@@ -13,25 +13,26 @@ const DRAG_AMOUNT = 100;
 const CARDS_ARRAY = Array.from({ length: TOTAL_CARDS }).fill(0);
 const SHADOW_AMOUNT = 10;
 
-const getRange = (
-  length: number,
-  i: number,
-  position: "first" | "last" | "middle"
-) => {
+const getRange = (length: number, i: number) => {
   const highestIndex = length - 1;
-  if (position === "first") {
+
+  // first
+  if (i === 0) {
     return {
       inputRange: [0, 0],
       outputRange: [SHADOW_AMOUNT, SHADOW_AMOUNT]
     };
   }
-  if (position === "last") {
+
+  // last
+  if (i === TOTAL_CARDS - 1) {
     return {
       inputRange: [0, (SHADOW_AMOUNT + DRAG_AMOUNT) * i],
       outputRange: [i * SHADOW_AMOUNT, (SHADOW_AMOUNT + DRAG_AMOUNT) * i]
     };
   }
 
+  // middle
   return {
     inputRange: [
       0,
@@ -67,9 +68,7 @@ export default function Root() {
     <SafeAreaView style={styles.container}>
       <View {...panResponder.panHandlers} style={[StyleSheet.absoluteFill]}>
         {CARDS_ARRAY.map((_, i) => {
-          const label =
-            i === 0 ? "first" : i === TOTAL_CARDS - 1 ? "last" : "middle";
-          const range = getRange(CARDS_ARRAY.length, i, label);
+          const range = getRange(CARDS_ARRAY.length, i);
           const translateY = animationValue.interpolate({
             ...range,
             extrapolate: "clamp"
